@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "./proto";
+
+import "google/protobuf/timestamp.proto";
+
+service Destroyer {
+  rpc acquireTargets(targetParams) returns (response) {}
+  rpc listTargets(targetParams) returns (response) {}
+  rpc getTarget(targetParams) returns (response) {}
+}
+
+message targetParams {
+  string id = 1;
+}
+
+message target {
+  string id = 1;
+  string message = 2;
+  google.protobuf.Timestamp created_on = 3;
+  google.protobuf.Timestamp updated_on = 4;
+}
+
+message response {
+  repeated target targets = 1;
+  target target = 2;
+}
+
