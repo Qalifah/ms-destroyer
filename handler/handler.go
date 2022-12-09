@@ -32,7 +32,7 @@ func (h *handler) AcquireTargets(ctx context.Context, _ *proto.TargetParams) (*p
 	if err := h.pubSubService.Publish(ctx, data); err != nil {
 		return nil, err
 	}
-	return nil, nil
+	return new(proto.Response), nil
 }
 
 func (h *handler) ListTargets(ctx context.Context, _ *proto.TargetParams) (*proto.Response, error) {
